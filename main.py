@@ -82,3 +82,4 @@ while True:
         break
 
 my_connection.close()
+print("Finished.")
