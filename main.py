@@ -27,7 +27,8 @@ def input_data():
 
 def alegere_tabel():
     tabele_disponibile = ['Operatii', 'utilizatori']
-    tabel_ales = pyinputplus.inputMenu(tabele_disponibile,"Va rugam alegeti unul dintre tabelele disponibile: \n", numbered=True)
+    tabel_ales = pyinputplus.inputMenu(tabele_disponibile, "Va rugam alegeti unul dintre tabelele disponibile: \n",
+                                       numbered=True)
     return tabel_ales
 
 
@@ -46,11 +47,12 @@ while True:
 
     elif my_option == '3':
         tabel_ales = alegere_tabel()
+        # noinspection SqlResolve
         my_query = f"SELECT * FROM '{tabel_ales}';"
 
     elif my_option == '4':
         name, surname = input_data()
-        my_query = f'SELECT id from utilizatori where prenume="{surname}" and nume="{name}";'
+        my_query = f"SELECT id from utilizatori where prenume='{surname}' and nume='{name}';"
         my_cursor.execute(my_query)
         calculator.main(id_utilizator=my_cursor.fetchone()[0])
     else:
@@ -74,7 +76,6 @@ while True:
                 print(message)
             else:
                 print("Va rugam alegeti un tabel valid")
-
 
     my_connection.commit()
     continuare = input("Do you want to continue (YES/no): ")
